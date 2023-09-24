@@ -3,8 +3,8 @@ package cmd
 import (
 	"os"
 
-	constants "github.com/farovictor/MongoPipeline/src/constants"
-	logger "github.com/farovictor/MongoPipeline/src/logging"
+	constants "github.com/farovictor/MongoDbExtractor/src/constants"
+	logger "github.com/farovictor/MongoDbExtractor/src/logging"
 	"github.com/spf13/cobra"
 )
 
