@@ -3,9 +3,9 @@ package cmd
 import (
 	"os"
 
-	constants "github.com/farovictor/MongoPipeline/src/constants"
-	logger "github.com/farovictor/MongoPipeline/src/logging"
-	mongo "github.com/farovictor/MongoPipeline/src/mongodb"
+	constants "github.com/farovictor/MongoDbExtractor/src/constants"
+	logger "github.com/farovictor/MongoDbExtractor/src/logging"
+	mongo "github.com/farovictor/MongoDbExtractor/src/mongodb"
 	"github.com/spf13/cobra"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"

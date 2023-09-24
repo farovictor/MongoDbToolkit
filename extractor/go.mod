@@ -1,4 +1,4 @@
-module github.com/farovictor/MongoPipeline
+module github.com/farovictor/MongoDbExtractor
 
 go 1.20
 

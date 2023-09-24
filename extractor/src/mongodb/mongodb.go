@@ -5,8 +5,8 @@ import (
 	"sync"
 	"time"
 
-	files "github.com/farovictor/MongoPipeline/src/files"
-	logger "github.com/farovictor/MongoPipeline/src/logging"
+	files "github.com/farovictor/MongoDbExtractor/src/files"
+	logger "github.com/farovictor/MongoDbExtractor/src/logging"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"

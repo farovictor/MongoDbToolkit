@@ -1,6 +1,6 @@
 package main
 
-import "github.com/farovictor/MongoPipeline/src/cmd"
+import "github.com/farovictor/MongoDbExtractor/src/cmd"
 
 func main() {
 	cmd.Execute()

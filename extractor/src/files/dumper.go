@@ -7,8 +7,8 @@ import (
 	"io/ioutil"
 	"sync"
 
-	constants "github.com/farovictor/MongoPipeline/src/constants"
-	logger "github.com/farovictor/MongoPipeline/src/logging"
+	constants "github.com/farovictor/MongoDbExtractor/src/constants"
+	logger "github.com/farovictor/MongoDbExtractor/src/logging"
 	"github.com/google/uuid"
 	"go.mongodb.org/mongo-driver/bson"
 )
