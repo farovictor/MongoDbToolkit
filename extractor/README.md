@@ -41,7 +41,7 @@ mongoextract extract-batch \
 		--query '{"latitude":{"$$gte":30}}' \
 		--output-path "./data" \
 		--output-prefix $ID_NAME \
-    --chunk-size 100 \
+		--chunk-size 100 \
 		--num-concurrent-files 10
 ```
 
