@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"fmt"
 	"os"
 
 	constants "github.com/farovictor/MongoDbExtractor/src/constants"
@@ -8,51 +9,65 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var mapping string
-var connUri string
-var dbName string
-var appName string
-var outputFilePrefix string
-var outputPath string
-var batchSize int32
-var query string
-var collectionName string
-var numConcurrentFiles int32
+var (
+	Version   string
+	GitCommit string
+	BuildTime string
+
+	mapping            string
+	connUri            string
+	dbName             string
+	appName            string
+	outputFilePrefix   string
+	outputPath         string
+	batchSize          int32
+	query              string
+	collectionName     string
+	numConcurrentFiles int32
+)
 
 // Root Command (does nothing, only prints nice things)
 var rootCmd = &cobra.Command{
-	Short: "This project aims to support mongodb extractors/loaders",
+	Short:   "This project aims to support mongodb extractors/loaders",
+	Version: Version,
 	Run: func(cmd *cobra.Command, args []string) {
-		println("s2")
+		fmt.Printf("For more info, visit: https://github.com/farovictor/MongoDbToolkit\n")
+		fmt.Printf("Git Commit: %s\n", GitCommit)
+		fmt.Printf("Built: %s\n", BuildTime)
+		fmt.Printf("Version: %s\n", Version)
 	},
 }
 
 // Extract Command
 var extractCmd = &cobra.Command{
-	Use:   "extract",
-	Short: "This is a extractor for mongodb routines",
-	Run:   extractMapping,
+	Use:     "extract",
+	Version: rootCmd.Version,
+	Short:   "This is a extractor for mongodb routines",
+	Run:     extractMapping,
 }
 
 // Extract Batch Command
 var extractBatchesCmd = &cobra.Command{
-	Use:   "extract-batch",
-	Short: "This is a batch extractor for mongodb routines",
-	Run:   extractBatches,
+	Use:     "extract-batch",
+	Version: rootCmd.Version,
+	Short:   "This is a batch extractor for mongodb routines",
+	Run:     extractBatches,
 }
 
 // Ping Command
 var pingCmd = &cobra.Command{
-	Use:   "ping",
-	Short: "This is a ping check for mongodb connection",
-	Run:   pingExecute,
+	Use:     "ping",
+	Version: rootCmd.Version,
+	Short:   "This is a ping check for mongodb connection",
+	Run:     pingExecute,
 }
 
 // Check if a collection exists
 var collExistsCmd = &cobra.Command{
-	Use:   "collxst",
-	Short: "This command checks if a defined collection exists",
-	Run:   collExistsExecute,
+	Use:     "collxst",
+	Version: rootCmd.Version,
+	Short:   "This command checks if a defined collection exists",
+	Run:     collExistsExecute,
 }
 
 // Executes cli
