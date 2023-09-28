@@ -20,7 +20,7 @@ build-container:
 				-t "mongodb-extractor:test" .
 
 run-ping: build
-	@./bin/extractor ping --conn-uri "$(MONGO_CONN_URI)"
+	@./bin/extractor ping --conn-uri "$(MONGO_CONN_URI)" --db-name "$(MONGO_DBNAME)" --app-name "$(APPNAME)"
 
 run-collection-exists: build
 	@./bin/extractor collxst --conn-uri "$(MONGO_CONN_URI)" --db-name "$(MONGO_DBNAME)" --collection "$(MONGO_COLLECTION)" --app-name "$(APPNAME)"
