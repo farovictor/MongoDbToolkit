@@ -8,19 +8,18 @@ import (
 	"sync"
 
 	constants "github.com/farovictor/MongoDbExtractor/src/constants"
-	logger "github.com/farovictor/MongoDbExtractor/src/logging"
 	"github.com/google/uuid"
 	"go.mongodb.org/mongo-driver/bson"
 )
 
 // Simple dumper to write json files
-func DumpToJsonFile(results []*bson.M, mapping string, filePrefix string, fileLocation string) bool {
+func DumpToJsonFile(results []*bson.M, mapping string, filePrefix string, fileLocation string) error {
 	// Defining final file name
 	var fP string
 	fileId, err := uuid.NewUUID()
 	if filePrefix == constants.MappingDefault {
 		if err != nil {
-			logger.ErrorLogger.Fatalln(err)
+			return err
 		}
 		fP = fmt.Sprintf("%s_%s", mapping, fileId)
 	} else {
@@ -30,16 +29,16 @@ func DumpToJsonFile(results []*bson.M, mapping string, filePrefix string, fileLo
 	// Turn into json
 	jsonData, err := json.Marshal(results)
 	if err != nil {
-		logger.ErrorLogger.Fatalln(results)
+		return err
 	}
 
 	outputFile := fmt.Sprintf("%s/%s.json", fileLocation, fP)
 
 	if err = ioutil.WriteFile(outputFile, jsonData, 0644); err != nil {
-		logger.ErrorLogger.Fatalln(err)
+		return err
 	}
 
-	return true
+	return nil
 }
 
 // Concurrent batch dumper to write json files through a channel
@@ -47,7 +46,10 @@ func DumpToJsonFile(results []*bson.M, mapping string, filePrefix string, fileLo
 //
 //	context: Context in which will run
 //	dataSource: Channel that will pass the data
-//	n: Not yet decided, I just copy paste
+//	mapping: name for data contextualization, used in file name.
+//	wg: Waiting Group manager
+//	filePrefix: filePrefix name
+//	fileLocation: output path where file will be saved
 //
 // Further reading about concurrency patterns.
 // Concurrent design patterns: https://levelup.gitconnected.com/concurrency-design-patterns-in-golang-f0843f570689
