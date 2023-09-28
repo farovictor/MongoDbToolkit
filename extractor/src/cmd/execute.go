@@ -4,8 +4,9 @@ import (
 	"os"
 
 	constants "github.com/farovictor/MongoDbExtractor/src/constants"
+	"github.com/farovictor/MongoDbExtractor/src/files"
 	logger "github.com/farovictor/MongoDbExtractor/src/logging"
-	mongo "github.com/farovictor/MongoDbExtractor/src/mongodb"
+	mongo "github.com/farovictor/MongodbDriver"
 	"github.com/spf13/cobra"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -49,7 +50,7 @@ func extractMapping(cmd *cobra.Command, args []string) {
 		logger.InfoLogger.Println("Options set!")
 
 		logger.InfoLogger.Println("Processing record")
-		if err := handler.ExtractResults(mapping, outputFilePrefix, outputPath, coll, filter, &options); err != nil {
+		if err := handler.ExtractResults(mapping, outputFilePrefix, outputPath, files.DumpToJsonFile, coll, filter, &options); err != nil {
 			logger.ErrorLogger.Fatalln(err)
 		}
 	} else {
@@ -80,7 +81,7 @@ func extractBatches(cmd *cobra.Command, args []string) {
 		logger.InfoLogger.Println("Options set!")
 
 		logger.InfoLogger.Println("Processing record")
-		if err := handler.StreamingResults(mapping, batchSize, numConcurrentFiles, outputFilePrefix, outputPath, coll, filter, &options); err != nil {
+		if err := handler.StreamingResults(mapping, outputFilePrefix, outputPath, batchSize, numConcurrentFiles, files.DumpStreams, coll, filter, &options); err != nil {
 			logger.ErrorLogger.Fatalln(err)
 		}
 		logger.InfoLogger.Println("record requested")
