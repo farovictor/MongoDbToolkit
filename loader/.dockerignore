@@ -1,0 +1,5 @@
+.env
+mongoextract
+Dockerfile
+README.md
+Makefile

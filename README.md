@@ -9,6 +9,10 @@ This project makes use of [goenv](https://github.com/go-nv/goenv), a go version 
 
 - go 1.20.0
 
+## Container
+To build images you can either run docker-compose file or use the dockerfiles in subpackages from repo root context. Extract and Loader requires the workspace to be entirely copied so they can access the driver package.
+p.s.: At this commit the packages are not officially published, thats why the docker context requires the workspace directory to be fully copied to container.
+
 ## Environments
 Any of the most used workflow/pipeline orchestrator out there in the market can benefit from Extractor/Loader package, those are generally written in python, which is convenient but not really performant.
 

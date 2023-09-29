@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  wait:
+    image: alpine:latest
+    command: sleep 10
+
+  extractor:
+    build:
+      dockerfile: ./extractor/Dockerfile
+      context: .
+    networks:
+      - mongodb-default
+    depends_on:
+      wait:
+        condition: service_completed_successfully
+    command: |
+      extract-batch \
+      --conn-uri "$MONGO_CONN_URI" \
+      --db-name "$MONGO_DBNAME" \
+      --collection "$MONGO_COLLECTION" \
+      --app-name "$APPNAME" \
+      --mapping record \
+      --query '{"latitude":{"$$gte":30}}' \
+      --output-path "./data" \
+      --output-prefix "some_prefix" \
+      --num-concurrent-files 10
+
+  loader:
+    build:
+      dockerfile: ./loader/Dockerfile
+      context: .
+    networks:
+      - mongodb-default
+    depends_on:
+      extractor:
+        condition: service_completed_successfully
+    command: |
+      load-batch \
+      --log-level "info" \
+      --conn-uri "$MONGO_CONN_URI" \
+      --db-name "$MONGO_DBNAME" \
+      --collection "$MONGO_COLLECTION" \
+      --app-name "$APPNAME" \
+      --search-path "./data" \
+      --file-prefix "some_prefix" \
+      --num-concurrent-files 10
+
+networks:
+  mongodb-default:
