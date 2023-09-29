@@ -4,6 +4,11 @@
 
 This project is intended to be used for anyone that requires to extract/load massive amounts of data from/into MongoDb in batch processes.
 
+## Requirements
+This project makes use of [goenv](https://github.com/go-nv/goenv), a go version management tool to use the proper go version.
+
+- go 1.20.0
+
 ## Environments
 Any of the most used workflow/pipeline orchestrator out there in the market can benefit from Extractor/Loader package, those are generally written in python, which is convenient but not really performant.
 
