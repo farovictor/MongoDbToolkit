@@ -1,6 +1,6 @@
 # This workspace provides 2 utilities:
-- [Extractor](extractor/README.md)
-- [Loader](loader/README.md)
+- [Extractor](https://github.com/farovictor/MongoDbExtractor)
+- [Loader](https://github.com/farovictor/MongoDbLoader)
 
 This project is intended to be used for anyone that requires to extract/load massive amounts of data from/into MongoDb in batch processes.
 
