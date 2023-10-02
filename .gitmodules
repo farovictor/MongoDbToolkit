@@ -1,0 +1,6 @@
+[submodule "MongoDbLoader"]
+	path = MongoDbLoader
+	url = https://github.com/farovictor/MongoDbLoader.git
+[submodule "MongoDbExtractor"]
+	path = MongoDbExtractor
+	url = https://github.com/farovictor/MongoDbExtractor.git
